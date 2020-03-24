@@ -5,15 +5,7 @@ from django.urls import reverse
 from django.core.files import File
 
 # Create your models here.
-
-
-class LabPost(models.Model):
-
-    title = models.CharField(max_length=100)
-    subject = models.CharField(default="abcd", max_length=100)
-    file = models.FileField(null=True,upload_to='files/',blank=True)
-
-    STREAM = (
+STREAM = (
         ('CSE', 'CSE'),
         ('ECE', 'ECE'),
         ('EEE', 'EEE'),
@@ -29,11 +21,7 @@ class LabPost(models.Model):
         ('BBA-HEM', 'BBA-HEM'),
         ('B-DES', 'B-DES'),
     )
-
-    stream = models.CharField(
-        default='CSE', max_length=30, choices=STREAM)
-
-    SEMESTER = (
+SEMESTER = (
         (1, 1),
         (2, 2),
         (3, 3),
@@ -43,10 +31,7 @@ class LabPost(models.Model):
         (7, 7),
         (8, 8),
     )
-    semester = models.IntegerField(default=1, choices=SEMESTER)
-    description = models.TextField(blank=True, max_length=200)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    CHOICES = (
+CHOICES = (
         ('plaintext', 'plaintext'),
         ('language-c', 'C'),
         ('language-csharp', 'C#'),
@@ -82,14 +67,39 @@ class LabPost(models.Model):
         ('language-yaml', 'YAML'),
     )
 
+class LabPost(models.Model):
+
+    title = models.CharField(max_length=100)
+    subject = models.CharField(default="abcd", max_length=100)
+    file = models.FileField(null=True,upload_to='files/',blank=True)
+    stream = models.CharField(
+        default='CSE', max_length=30, choices=STREAM)
+    semester = models.IntegerField(default=1, choices=SEMESTER)
+    description = models.TextField(blank=True, max_length=200)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.CharField(
         default='plaintext', max_length=30, choices=CHOICES)
     postbody = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-
     def _str_(self):
         return self.title
-        
-
     def get_absolute_url(self):
         return reverse('full_post', kwargs={'pk': self.pk})
+
+
+class Material(models.Model):
+
+    title = models.CharField(max_length=100)
+    subject = models.CharField(default="abcd", max_length=100)
+    description = models.TextField(blank=True, max_length=200)
+    author = models.ForeignKey(User, on_delete=models.CASCADE , related_field = 'material')
+    stream = models.CharField(default='CSE', max_length=30, choices=STREAM)
+    semester = models.IntegerField(default=1, choices=SEMESTER)
+
+class MaterialFile(models.Model):
+
+   materialfile = models.FileField(upload_to="material/")
+   feed = models.ForeignKey(Feed, on_delete=models.CASCADE, related_name='files')
+
+
+
