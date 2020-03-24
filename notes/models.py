@@ -87,19 +87,32 @@ class LabPost(models.Model):
         return reverse('full_post', kwargs={'pk': self.pk})
 
 
-class Material(models.Model):
+#  MATERIAL FILES
+class FilePost(models.Model):
 
     title = models.CharField(max_length=100)
-    subject = models.CharField(default="abcd", max_length=100)
-    description = models.TextField(blank=True, max_length=200)
-    author = models.ForeignKey(User, on_delete=models.CASCADE , related_field = 'material')
-    stream = models.CharField(default='CSE', max_length=30, choices=STREAM)
+    subject = models.CharField(default="", max_length=100)
+    
+    stream = models.CharField(
+        default='CSE', max_length=30, choices=STREAM)
     semester = models.IntegerField(default=1, choices=SEMESTER)
+    description = models.TextField(blank=True, max_length=200)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    file1 = models.FileField(null=True,upload_to='filepost/',blank=True)
+    file2 = models.FileField(null=True,upload_to='filepost/',blank=True)
+    file3 = models.FileField(null=True,upload_to='filepost/',blank=True)
+    file4 = models.FileField(null=True,upload_to='filepost/',blank=True)
+    file5 = models.FileField(null=True,upload_to='filepost/',blank=True)
+    
 
-class MaterialFile(models.Model):
+    date_posted = models.DateTimeField(default=timezone.now)
+    def _str_(self):
+        return self.title
+    def get_absolute_url(self):
+        return reverse('full_post', kwargs={'pk': self.pk})
 
-   materialfile = models.FileField(upload_to="material/")
-   feed = models.ForeignKey(Feed, on_delete=models.CASCADE, related_name='files')
+
 
 
 
