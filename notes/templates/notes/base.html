@@ -24,6 +24,9 @@
     <script>
         hljs.initHighlightingOnLoad();
     </script>
+    <style>
+       
+    </style>
 
 </head>
 
@@ -45,7 +48,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span> 
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Links -->
@@ -59,11 +62,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/">About MDB</a>
+                            <a class="nav-link waves-effect" href={% url 'materials' %}>Material</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect"
-                                href="https://mdbootstrap.com/docs/jquery/getting-started/download/">Free download</a>
+                                href="{% url 'labposts' %}">Lab</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/">Free
@@ -79,13 +82,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect">
-                                <i class="fab fa-twitter"></i>
+                            <a href="{% url 'materialpost' %}" class="nav-link waves-effect">
+                                <i class="fa fa-upload"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'newpost' %}" class="nav-link border border-light rounded waves-effect">
-                                <i class="fa fa-pen mr-2"></i>New Post
+                            <a href="{% url 'newpost' %}"  data-tooltip="New Post" class="nav-link  rounded waves-effect">
+                               <i class="fa fa-pen"></i>
                             </a>
                         </li>
                     </ul>

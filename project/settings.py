@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y@1ecx^i#0iaw25j!bn+0(vv9d+4qu#vu83=bco))&%*n-v#x-'
+SECRET_KEY = '1$nmc7mr#nt1xl535sm8_4fimv7pu61f5*@si+vr6_(y4egbb#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,9 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'notes',
-        'USER': 'qaziamaan',
-        
-        
     }
 }
 
@@ -126,4 +123,3 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
