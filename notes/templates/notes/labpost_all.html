@@ -1,31 +1,14 @@
 {% extends "notes/base.html" %}
 {% block content %}
 <!--Section: Jumbotron-->
-<section class="card wow fadeIn"
-    style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+<section class="card wow fadeIn">
 
     <!-- Content -->
-    <div class="card-body text-white text-center py-5 px-5 my-5">
-
-        <h1 class="mb-4">
-            <strong>Learn Bootstrap 4 with MDB</strong>
-        </h1>
-        <p class="mb-4">
-            <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video
-                and written
-                versions available. Create your own, stunning website.</strong>
-        </p>
-        <a " href=" {% url 'materials' %}" class="btn btn-outline-white btn-lg">Check out Materials
-            <i class="fas fa-graduation-cap ml-2"></i>
-        </a>
-
-    </div>
-    <!-- Content -->
+    
 </section>
-<!--Section: Jumbotron-->
-<hr class="my-5">
-<!--Section: Cards-->
-<section class="text-center">
+<br>
+<!--http://127.0.0.1:8000/notes/labposts/Section: Cards-->
+<section id="alllabposts" class="text-center">
 
     <!--Grid row-->
     <div class="row mb-4 wow fadeIn">
@@ -50,12 +33,11 @@
                     <!--Title-->
                     <h4 class="card-title">{{post.title}}</h4>
                     <!--Text-->
-                    <p class="card-text">{{post.description}}</p>
-                    <a href="https://mdbootstrap.com/angular/" style="background: #3677bc; color:white;"
-                        class=" btn btn-md">Free
-                        download
-                        <i class="fas fa-download ml-2"></i>
-                    </a>
+                    <p class="card-text">{{post.description|truncatechars:50}}</p>
+                    <p class="text-muted small">Posted by <a
+                            href="{% url 'user_posts' post.author.username%}">{{ post.author|upper}} </a>on
+                        {{ post.date_posted|date:"F d, Y"}}</p>
+
                 </div>
 
             </div>
