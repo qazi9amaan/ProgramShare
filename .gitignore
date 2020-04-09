@@ -1,8 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.vscode/
 *.py[cod]
 *$py.class
-
 # C extensions
 *.so
 
@@ -141,5 +141,3 @@ cython_debug/
 # static files generated from Django application using `collectstatic`
 media
 static
-
-.vscode
